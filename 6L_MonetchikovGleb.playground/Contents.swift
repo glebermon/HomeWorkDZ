@@ -175,7 +175,19 @@ struct Car {
             default: return nil
             }
         }
+        set {
+            let value = newValue ?? ""
+            
+            switch(index) {
+            case 0: return engine = value
+            case 1: return model = value
+            case 2..<(2+weels.count): return weels[index - 2] = value
+            default: break
+            }
+            
+        }
     }
+    
 }
 
 var car = Car()
@@ -183,5 +195,17 @@ car.count
 
 car[0]
 car[1]
+car[2]
+car[3]
+car[4]
 car[5]
 car[6] // ТАКОГО ИНДЕКЧСА НЕТ - ВОЗВРАЩАЕТ nil
+
+
+// можно даже двигатель поменять так как в структуре set есть.
+
+car[0] = "V6"
+
+// по дорогре пробили колесо, поставим запасное
+
+car[5] = "ZAPASKA"
